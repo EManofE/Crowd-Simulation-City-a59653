@@ -30,6 +30,11 @@ public class drop : MonoBehaviour
             if(Physics.Raycast(ray,out hitInfo))
             {
                 Instantiate(obstacle, hitInfo.point, obstacle.transform.rotation);
+
+                foreach(GameObject a in agents)
+                {
+                    a.GetComponent<AIControl>().DetectNewObstacle(hitInfo.point);
+                }
             }
         }
     }
